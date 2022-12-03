@@ -6,7 +6,7 @@
 /*   By: dmatavel <dmatavel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 18:40:14 by dmatavel          #+#    #+#             */
-/*   Updated: 2022/12/02 22:47:30 by dmatavel         ###   ########.fr       */
+/*   Updated: 2022/12/02 23:09:01 by dmatavel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ char	*get_next_line(int fd)
 	static char	*stock;
 	char		*line;
 
-	if (fd < 0 || fd > 256 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd == STATUS_ERROR || fd > OPEN_MAX
+		|| BUFFER_SIZE <= _EOF || read(fd, 0, 0) < 0)
 		return (NULL);
 	stock = read_file(fd, stock);
 	line = get_line(stock);
@@ -36,15 +37,15 @@ static char	*read_file(int fd, char *stock)
 	int		read_bytes;
 
 	read_bytes = 1;
-	while (read_bytes > 0)
+	while (read_bytes > _EOF)
 	{
 		read_bytes = read(fd, buf, BUFFER_SIZE);
-		if (read_bytes == -1)
+		if (read_bytes == STATUS_ERROR)
 			return (NULL);
 		buf[read_bytes] = '\0';
 		if (!stock)
 		{
-			stock = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+			stock = malloc(BUFFER_SIZE + 1 * sizeof(char));
 			stock = ft_strcpy(stock, buf);
 		}
 		else
@@ -65,7 +66,7 @@ static char	*get_line(char *stock)
 	i = 0;
 	while (stock[i] && stock[i] != '\n')
 		i++;
-	new_line = ft_calloc(i + 2, sizeof(char));
+	new_line = malloc(i + 2 * sizeof(char));
 	if (new_line == NULL)
 		return (NULL);
 	j = -1;
@@ -96,7 +97,7 @@ static char	*get_excess(char *stock)
 		free(stock);
 		return (NULL);
 	}
-	excess = ft_calloc(ft_strlen(stock) - i + 1, sizeof(char));
+	excess = malloc(ft_strlen(stock) - i + 1 * sizeof(char));
 	if (excess == NULL)
 		return (NULL);
 	i++;
