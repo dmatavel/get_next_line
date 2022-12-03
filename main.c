@@ -6,7 +6,7 @@
 /*   By: dmatavel <dmatavel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 18:39:37 by dmatavel          #+#    #+#             */
-/*   Updated: 2022/12/02 18:45:00 by dmatavel         ###   ########.fr       */
+/*   Updated: 2022/12/02 22:37:10 by dmatavel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,13 @@ int	main(void)
 {
 	int		fd;
 	char	*line;
-	int		i;
 
-	fd = open("quadrilha", O_RDONLY);
-	if (fd == -1)
-	{
-		close(fd);
-		exit (-1);
-	}
-	i = 0;
-	while (i++ < 12)
-	{
-		line = get_next_line(fd);
-		printf("%s", line);
-	}
-	close(fd);
+	fd = open("file", O_RDONLY);
+	line = get_next_line(fd);
+	printf("%s", line);
+	free(line);
+	line = get_next_line(fd);
+	printf("%s", line);
 	free(line);
 	return (0);
 }
-
