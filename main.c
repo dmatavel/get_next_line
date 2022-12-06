@@ -6,7 +6,7 @@
 /*   By: dmatavel <dmatavel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 18:39:37 by dmatavel          #+#    #+#             */
-/*   Updated: 2022/12/02 22:37:10 by dmatavel         ###   ########.fr       */
+/*   Updated: 2022/12/06 14:25:17 by dmatavel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(void)
 	int		fd;
 	char	*line;
 
-	fd = open("file", O_RDONLY);
+	fd = open("files/no_nl", O_RDONLY);
 	line = get_next_line(fd);
 	printf("%s", line);
 	free(line);
