@@ -7,3 +7,5 @@
 **Return values**: return the first line of an open file descriptor, if any, and the next lines in successive calls. The function returns `NULL` if an error occurs, if the file is empty or if there is nothing else to read.
 
 **What I've learned in this project**: How to open and read a file descriptor with proper functions; what a file descriptor is; static variable - a handful way to store information in variables that can be reused outside the scope of a function call where it was created; management of memory in stack and head areas; Valgrind usage to track memory leaks and solve critical problems; code abstraction, buffer concept and string manipulation.
+
+**Special thanks** to João Miguel (jogmoes-) for his invaluable help in solving the memory leaks and general understanding of the problem.
