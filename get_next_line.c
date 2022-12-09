@@ -6,7 +6,7 @@
 /*   By: dmatavel <dmatavel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 18:40:14 by dmatavel          #+#    #+#             */
-/*   Updated: 2022/12/06 14:14:24 by dmatavel         ###   ########.fr       */
+/*   Updated: 2022/12/08 23:08:52 by dmatavel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static char	*read_file(int fd, char *stock)
 		if (!stock)
 		{
 			stock = malloc(BUFFER_SIZE + 1 * sizeof(char));
+			if (stock == NULL)
+				return (NULL);
 			stock = ft_strcpy(stock, buf);
 		}
 		else
